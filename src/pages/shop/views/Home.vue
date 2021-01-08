@@ -19,43 +19,33 @@ export default {
   },
   data(){
     return {
-      itemList:[
-        {
-          type: 1,
-          thumb: '',
-          thumbText: 'test',
-          title: 'test',
-          description: 'test입니다1.',
-          link: '/item',
-          linkText: '링크'
-        },
-        {
-          type: 2,
-          thumb: '',
-          thumbText: 'test2',
-          title: 'test',
-          description: 'test입니다2.',
-          tag: ['test'],
-          link: '',
-          linkText: '링크'
-        },
-        {
-          type: 3,
-          thumb: '',
-          thumbText: 'test3',
-          title: 'test',
-          description: 'test입니다3.',
-          link: '',
-          linkText: '링크'
-        },
-      ]
+      itemList:
+        Array.from(Array(50).keys()).map(it=>{return {
+          idx: it,
+          type: Math.floor(Math.random() * 5),
+          thumb: `/images/sample_${Math.floor(Math.random() * 24)+1}.jpg`,
+          title: `test${it}`,
+          description: `${it} 번째 아이템`,
+          price: Math.floor(Math.random() * 50) * 100 + 1000,
+          tag: Array.from(Array(Math.floor(Math.random()*4)).keys()).map(it=>`testTag${it}`)
+        }})
     }
   }
 };
+ /* {
+  type: 4,
+  thumb: '/images/sample_2.jpg',
+  thumbText: 'test2',
+  title: 'test',
+  description: 'test입니다2.',
+  tag: ['test', 'test2'],
+  link: '',
+  linkText: '링크',
+  price: 2000,
+  orgPrice: 3000
+}, */
 </script>
 
 <style lang="scss">
 
 </style>
-
-    ItemCard

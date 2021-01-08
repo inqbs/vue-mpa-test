@@ -6,19 +6,20 @@
       <p class="card-text">{{item.description}}</p>
     </div>
     <div class="card-body text-right">
-      <p>
-        <strong>{{price}}</strong>
-      </p>
-      <div class="d-flex mb-3" v-if="!!item.tag && item.tag.length > 0">
+      <div class="d-flex flex-wrap mb-3" v-if="!!item.tag && item.tag.length > 0">
         <span v-for="tag in item.tag" :key="tag"
-          class="badge badge-dark">
+          class="badge badge-dark mr-2">
           {{tag}}
         </span>
       </div>
+      <p>
+        <del v-if="!!item.sale" class="h6 text-secondary mr-2">{{toCurrency(item.orgPrice)}}</del>
+        <strong class="h4 text-danger">{{toCurrency(item.price)}}</strong>
+      </p>
       <div class="btn-group d-flex">
         <router-link :to="item.link" class="btn btn-outline-dark">상세보기</router-link>
-        <router-link :to="item.link" class="btn btn-outline-dark">장바구니</router-link>
-        <router-link :to="item.link" class="btn btn-outline-dark">주문하기</router-link>
+        <button class="btn btn-outline-dark" type="button">장바구니</button>
+        <button class="btn btn-outline-dark" type="button">주문하기</button>
       </div>
     </div>
   </div>
@@ -29,10 +30,8 @@ export default {
   name: 'ItemCard',
   props: ['item'],
   computed: {
-    price(){
-      const price = this.item.price || 0
-      console.log(Number(price).toLocaleString('ko-KR', {style: 'currency',currency: 'KRW'}))
-      return Number(price).toLocaleString('ko-KR', {style: 'currency',currency: 'KRW'});
+    toCurrency(){
+      return value => Number(value || 0).toLocaleString('ko-KR', {style: 'currency',currency: 'KRW'});
     }
   },
   data(){

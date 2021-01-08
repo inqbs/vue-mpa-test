@@ -39,6 +39,12 @@
       </transition>
     </main>
 
+     <div class="btn__cart-wrapper">
+      <button type="button" class="btn btn-warning btn-lg rounded-circle w-100 h-100">
+        <font-awesome-icon icon="shopping-cart" />
+      </button>
+    </div>
+
   </div>
 </template>
 
@@ -62,7 +68,7 @@ export default {
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.2s;
+  transition-duration: 0.15s;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
 }
@@ -70,5 +76,13 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0
+}
+
+.btn__cart-wrapper{
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 64px;
+  height: 64px;
 }
 </style>
