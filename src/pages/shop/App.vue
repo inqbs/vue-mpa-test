@@ -39,19 +39,33 @@
       </transition>
     </main>
 
-     <div class="btn__cart-wrapper">
-      <button type="button" class="btn btn-warning btn-lg rounded-circle w-100 h-100">
+     <div v-b-toggle.cart-container  class="btn__cart-wrapper">
+      <b-button type="button" class="btn btn-warning btn-lg rounded-circle w-100 h-100">
         <font-awesome-icon icon="shopping-cart" />
-      </button>
+      </b-button>
     </div>
+
+    <b-sidebar id="cart-container" title="쇼핑카트" bg-variant="warning" text-variant="dark" right shadow>
+      <ShoppingCartItem />
+      <template #footer>
+       <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
+        <strong class="mr-auto">구매금액</strong>
+        <b-button variant="warning" size="sm">결제</b-button>
+       </div>
+      </template>
+    </b-sidebar>
 
   </div>
 </template>
 
 <script>
+import ShoppingCartItem from './components/ShoppingCartItem'
+
 export default {
+  components: [ShoppingCartItem],
   data() {
     return {
+
       keyword: '',
     }
   },
@@ -84,5 +98,9 @@ export default {
   right: 1rem;
   width: 64px;
   height: 64px;
+  transition: all .48s ease;
+  &.not-collapsed{
+    right: calc(1rem + 320px);
+  }
 }
 </style>
