@@ -76,7 +76,11 @@ export default {
       return this.$store.getters.cartList;
     },
     cartSumPrice(){
-      return this.$store.getters.cartList.map(it=>it.price).reduce((a,b)=>a+b).toLocaleString('ko-KR', {style: 'currency',currency: 'KRW'});
+      if(this.$store.getters.cartList.length > 0){
+        return this.$store.getters.cartList.map(it=>it.price).reduce((a,b)=>a+b).toLocaleString('ko-KR', {style: 'currency',currency: 'KRW'});
+      }else{
+        return '₩0'
+      }
     }
   },
   data() {
