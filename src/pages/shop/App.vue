@@ -27,9 +27,9 @@
         </ul>
       </div>
       <form class="form-inline" @submit="search">
-        <input class="form-control mr-sm-2" type="search" v-model="keyword"
+        <input class="form-control form-control-sm mr-sm-2" type="search" v-model="keyword"
           placeholder="검색" aria-label="검색">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">검색</button>
       </form>
     </nav>
 
@@ -73,7 +73,7 @@ export default {
   components: {ShoppingCartItem},
   computed:{
     cartList(){
-      return this.$store.getters.cartList;
+      return this.$store.getters.cartList
     },
     cartSumPrice(){
       if(this.$store.getters.cartList.length > 0){

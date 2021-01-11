@@ -11,6 +11,7 @@
 
 <script>
 import ItemCard from '@/components/ItemCard.vue'
+import ItemVo from '@/model/ItemVo'
 
 export default {
   name: 'Home',
@@ -20,7 +21,7 @@ export default {
   data(){
     return {
       itemList:
-        Array.from(Array(50).keys()).map(it=>{return {
+        Array.from(Array(50).keys()).map(it=>new ItemVo({
           idx: it,
           link: `/detail/${it}`,
           type: Math.floor(Math.random() * 5),
@@ -29,7 +30,7 @@ export default {
           description: `${it} 번째 아이템`,
           price: Math.floor(Math.random() * 50) * 100 + 1000,
           tag: Array.from(Array(Math.floor(Math.random()*4)).keys()).map(it=>`testTag${it}`)
-        }})
+        }))
     }
   },
   methods:{
@@ -44,18 +45,6 @@ export default {
     }
   }
 };
- /* {
-  type: 4,
-  thumb: '/images/sample_2.jpg',
-  thumbText: 'test2',
-  title: 'test',
-  description: 'test입니다2.',
-  tag: ['test', 'test2'],
-  link: '',
-  linkText: '링크',
-  price: 2000,
-  orgPrice: 3000
-}, */
 </script>
 
 <style lang="scss">

@@ -4,6 +4,10 @@
       <b-nav-item href="/shop">
         shop
       </b-nav-item>
+      <b-nav-item>test</b-nav-item>
+      <b-nav-item>test2</b-nav-item>
+      <b-nav-item>test3</b-nav-item>
+      <b-nav-item>test4</b-nav-item>
     </b-nav>
     <b-jumbotron fluid header="Main Page" lead="This is main page" bg-variant="dark" text-variant="light">
     </b-jumbotron>
