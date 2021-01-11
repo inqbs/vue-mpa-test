@@ -39,17 +39,25 @@
       </transition>
     </main>
 
-     <div v-b-toggle.cart-container  class="btn__cart-wrapper">
+    <div v-b-toggle.cart-container class="btn__cart-wrapper">
       <b-button type="button" class="btn btn-warning btn-lg rounded-circle w-100 h-100">
         <font-awesome-icon icon="shopping-cart" />
       </b-button>
     </div>
 
     <b-sidebar id="cart-container" title="쇼핑카트" bg-variant="warning" text-variant="dark" right shadow>
-      <ShoppingCartItem />
+      <div class="container">
+        <transition-group name="fade" mode="out-in">
+          <ShoppingCartItem 
+              v-for="(item, idx) in cartList" :key="idx"
+              :item="item" :idx="idx"
+              class="mb-3" >
+          </ShoppingCartItem>
+        </transition-group>
+      </div>
       <template #footer>
        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
-        <strong class="mr-auto">구매금액</strong>
+        <strong class="mr-auto">주문금액: {{cartSumPrice}}</strong>
         <b-button variant="warning" size="sm">결제</b-button>
        </div>
       </template>
@@ -62,10 +70,17 @@
 import ShoppingCartItem from './components/ShoppingCartItem'
 
 export default {
-  components: [ShoppingCartItem],
+  components: {ShoppingCartItem},
+  computed:{
+    cartList(){
+      return this.$store.getters.cartList;
+    },
+    cartSumPrice(){
+      return this.$store.getters.cartList.map(it=>it.price).reduce((a,b)=>a+b).toLocaleString('ko-KR', {style: 'currency',currency: 'KRW'});
+    }
+  },
   data() {
     return {
-
       keyword: '',
     }
   },
@@ -99,6 +114,7 @@ export default {
   width: 64px;
   height: 64px;
   transition: all .48s ease;
+  z-index: 500;
   &.not-collapsed{
     right: calc(1rem + 320px);
   }

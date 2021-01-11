@@ -3,7 +3,7 @@
     <h2>Home.vue</h2>
     <div class="card-columns">
       <ItemCard 
-          v-for="it in itemList" v-bind:key="it" :item="it"
+          v-for="(it, idx) in itemList" v-bind:key="idx" :item="it"
         ></ItemCard>
     </div>
   </div>
@@ -22,6 +22,7 @@ export default {
       itemList:
         Array.from(Array(50).keys()).map(it=>{return {
           idx: it,
+          link: `/detail/${it}`,
           type: Math.floor(Math.random() * 5),
           thumb: `/images/sample_${Math.floor(Math.random() * 24)+1}.jpg`,
           title: `test${it}`,
@@ -29,6 +30,17 @@ export default {
           price: Math.floor(Math.random() * 50) * 100 + 1000,
           tag: Array.from(Array(Math.floor(Math.random()*4)).keys()).map(it=>`testTag${it}`)
         }})
+    }
+  },
+  methods:{
+    addCart(item){
+      this.$store.dispatch('addCart', item)
+    },
+    editCart(item){
+      this.$store.dispatch('editCart', item)
+    },
+    removeCart(item){
+      this.$store.dispatch('removeCart', item)
     }
   }
 };

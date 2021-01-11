@@ -2,7 +2,9 @@
   <div class="card">
     <img class="card-img-top" :src="item.thumb" :alt="item.thumbText" />
     <div class="card-body">
-      <h5 class="card-title">{{item.title}}</h5>
+      <h5 class="card-title">
+        <router-link :to="item.link">{{item.title}}</router-link>
+      </h5>
       <p class="card-text">{{item.description}}</p>
     </div>
     <div class="card-body text-right">
@@ -17,8 +19,7 @@
         <strong class="h4 text-danger">{{toCurrency(item.price)}}</strong>
       </p>
       <div class="btn-group d-flex">
-        <router-link :to="item.link" class="btn btn-outline-dark">상세보기</router-link>
-        <button class="btn btn-outline-dark" type="button">장바구니</button>
+        <button class="btn btn-outline-dark" type="button" @click.stop="addCart(item)">장바구니</button>
         <button class="btn btn-outline-dark" type="button">주문하기</button>
       </div>
     </div>
@@ -37,6 +38,11 @@ export default {
   data(){
     return {
     }
+  },
+  methods: {
+    addCart(item){
+      this.$store.dispatch('addCart', item)
+    },
   }
 }
 </script>
