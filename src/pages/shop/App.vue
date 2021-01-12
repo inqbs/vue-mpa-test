@@ -48,7 +48,7 @@
     <b-sidebar id="cart-container" title="쇼핑카트" bg-variant="warning" text-variant="dark" right shadow>
       <transition-group class="container" tag="div">
         <ShoppingCartItem 
-            v-for="item in cartList" :key="item.idx"
+            v-for="item in cartList" v-bind:key="item.idx"
             :item="item" :idx="item.idx"
             class="mb-3" >
         </ShoppingCartItem>

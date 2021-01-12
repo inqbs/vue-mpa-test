@@ -1,3 +1,5 @@
+import ItemVo from '@/model/ItemVo.js'
+
 const state = {
     cartList: []
 }
@@ -19,10 +21,10 @@ const actions = {
 }
 
 const mutations = {
-    addCart(state, params){
+    addCart(state, item){
         console.log('ShopCart.addCart fired')
-        if(!state.cartList.map(it=>it.idx).includes(params.idx)){
-            state.cartList.push(params)
+        if(!state.cartList.map(it=>it.idx).includes(item.idx)){
+            state.cartList.push(item)
         }else{
             alert('이미 등록된 상품입니다.')
         }

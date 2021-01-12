@@ -3,14 +3,14 @@
     <h2>Home.vue</h2>
     <div class="card-columns">
       <ItemCard 
-          v-for="(it, idx) in itemList" v-bind:key="idx" :item="it"
+          v-for="it in itemList" v-bind:key="it.idx" :item="it"
         ></ItemCard>
     </div>
   </div>
 </template>
 
 <script>
-import ItemCard from '@/components/ItemCard.vue'
+import ItemCard from '@/pages/shop/components/ItemCard.vue'
 import ItemVo from '@/model/ItemVo'
 
 export default {
@@ -35,6 +35,7 @@ export default {
   },
   methods:{
     addCart(item){
+      console.log(item)
       this.$store.dispatch('addCart', item)
     },
   }
