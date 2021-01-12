@@ -4,7 +4,7 @@
       <b-nav-item href="/shop">
         shop
       </b-nav-item>
-      <b-nav-item>test</b-nav-item>
+      <b-nav-item href="/page">page</b-nav-item>
       <b-nav-item>test2</b-nav-item>
       <b-nav-item>test3</b-nav-item>
       <b-nav-item>test4</b-nav-item>

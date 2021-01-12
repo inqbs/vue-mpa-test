@@ -2,9 +2,11 @@
   <div>
     <h2>Home.vue</h2>
     <div class="card-columns">
-      <ItemCard 
-          v-for="it in itemList" v-bind:key="it.idx" :item="it"
-        ></ItemCard>
+      <transition-group name="fade">
+        <ItemCard 
+            v-for="it in resultList" v-bind:key="it.idx" :item="it"
+          ></ItemCard>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -18,6 +20,18 @@ export default {
   components: {
     ItemCard,
   },
+  computed:{
+    resultList(){
+      if(!!this.keyword){
+        return this.itemList.filter(it=>it.title.includes(this.keyword))
+      }else{
+        return this.itemList
+      }
+    }
+  },
+  props:[
+    'keyword'
+  ],
   data(){
     return {
       itemList:

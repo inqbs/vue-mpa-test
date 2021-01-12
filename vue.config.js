@@ -10,6 +10,11 @@ module.exports = {
       template: 'public/layout-shop.html',
       filename: 'shop.out.html',
     },
+    page: {
+      entry: 'src/pages/pagination/main.js',
+      template: 'public/index.html',
+      filename: 'page.out.html',
+    },
   },
 
   assetsDir: 'static'

@@ -14,21 +14,25 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    props: true,
   },
   {
     path: '/electronic',
     name: 'Electronic',
     component: Electronic,
+    props: true,
   },
   {
     path: '/clothing',
     name: 'Clothing',
     component: Clothing,
+    props: true,
   },
   {
     path: '/food',
     name: 'Food',
     component: Food,
+    props: true,
   },
 ];
 

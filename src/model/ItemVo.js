@@ -1,8 +1,26 @@
 export default class ItemVo {
 
+  type;
+  thumb;
+  thumbText;
+  title;
+  description;
+  tag = [];
+  link;
+  linkText;
+  price = 0;
+  orgPrice = 0;
+
+  #data;
+
   //  data: param Object
   constructor(data) {
-    Object.assign(this, data)
+    Object.keys(data).forEach(key=>{
+      if(this.hasOwnProperty(key)){
+        this[key] = data[key]
+      }
+    })
+    this.#data = data;
   }
 
 }

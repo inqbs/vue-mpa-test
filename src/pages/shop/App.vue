@@ -35,7 +35,7 @@
 
     <main class="container">
       <transition name="fade" mode="out-in">
-          <router-view />
+          <router-view :keyword="keyword" />
       </transition>
     </main>
 
@@ -126,20 +126,22 @@ export default {
   position: relative;
 }
 
-.v-enter-active, .v-leave-active {
-  transition: all .5s;
-}
+#cart-container{
+  .v-enter-active, .v-leave-active {
+    transition: all .5s;
+  }
 
-.v-enter, .v-leave-to {
-  opacity: 0;
-}
+  .v-enter, .v-leave-to {
+    opacity: 0;
+  }
 
-.v-move {
-  transition: all .7s;
-}
+  .v-move {
+    transition: all .7s;
+  }
 
-.v-leave-active {
-  position: absolute !important;
-  width: 90%;
+  .v-leave-active {
+    position: absolute !important;
+    width: 90%;
+  }
 }
 </style>
