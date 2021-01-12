@@ -1,5 +1,7 @@
 export default class ItemVo {
 
+  idx;
+
   type;
   thumb;
   thumbText;

@@ -32,10 +32,8 @@ export default {
   props:[
     'keyword'
   ],
-  data(){
-    return {
-      itemList:
-        Array.from(Array(50).keys()).map(it=>new ItemVo({
+  mounted(){
+    this.itemList = Array.from(Array(50).keys()).map(it=>new ItemVo({
           idx: it,
           link: `/detail/${it}`,
           type: Math.floor(Math.random() * 5),
@@ -44,7 +42,11 @@ export default {
           description: `${it} 번째 아이템`,
           price: Math.floor(Math.random() * 50) * 100 + 1000,
           tag: Array.from(Array(Math.floor(Math.random()*4)).keys()).map(it=>`testTag${it}`)
-        }))
+    }))
+  },
+  data(){
+    return {
+      itemList: []
     }
   },
   methods:{
