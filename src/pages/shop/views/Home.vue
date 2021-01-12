@@ -37,12 +37,6 @@ export default {
     addCart(item){
       this.$store.dispatch('addCart', item)
     },
-    editCart(item){
-      this.$store.dispatch('editCart', item)
-    },
-    removeCart(item){
-      this.$store.dispatch('removeCart', item)
-    }
   }
 };
 </script>

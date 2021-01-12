@@ -21,14 +21,18 @@ const actions = {
 const mutations = {
     addCart(state, params){
         console.log('ShopCart.addCart fired')
-        state.cartList.push(params)
+        if(!state.cartList.map(it=>it.idx).includes(params.idx)){
+            state.cartList.push(params)
+        }else{
+            alert('이미 등록된 상품입니다.')
+        }
     },
     editCart(state, params){
         console.log('ShopCart.editCart fired')
     },
     removeCart(state, idx){
         console.log('ShopCart.removeCart fired')
-        state.cartList.splice(idx, 1)
+        state.cartList = state.cartList.filter(it=>it.idx !== idx);
     }
 
 }

@@ -46,15 +46,13 @@
     </div>
 
     <b-sidebar id="cart-container" title="쇼핑카트" bg-variant="warning" text-variant="dark" right shadow>
-      <div class="container">
-        <transition-group name="fade" mode="out-in">
-          <ShoppingCartItem 
-              v-for="(item, idx) in cartList" :key="idx"
-              :item="item" :idx="idx"
-              class="mb-3" >
-          </ShoppingCartItem>
-        </transition-group>
-      </div>
+      <transition-group class="container" tag="div">
+        <ShoppingCartItem 
+            v-for="item in cartList" :key="item.idx"
+            :item="item" :idx="item.idx"
+            class="mb-3" >
+        </ShoppingCartItem>
+      </transition-group>
       <template #footer>
        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
         <strong class="mr-auto">주문금액: {{cartSumPrice}}</strong>
@@ -101,7 +99,7 @@ export default {
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.15s;
+  transition-duration: .3s;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
 }
@@ -122,5 +120,26 @@ export default {
   &.not-collapsed{
     right: calc(1rem + 320px);
   }
+}
+
+.container{
+  position: relative;
+}
+
+.v-enter-active, .v-leave-active {
+  transition: all .5s;
+}
+
+.v-enter, .v-leave-to {
+  opacity: 0;
+}
+
+.v-move {
+  transition: all .7s;
+}
+
+.v-leave-active {
+  position: absolute !important;
+  width: 90%;
 }
 </style>
