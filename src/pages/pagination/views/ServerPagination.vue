@@ -62,7 +62,7 @@ export default {
     return {
       pagination: {
         perPage: 10,
-        currentPage: 1,
+        currentPage: this.$route.query.page ?? 1,
         options: [
           { value: 10, text: "10건" },
           { value: 30, text: "30건" },
@@ -77,13 +77,16 @@ export default {
     };
   },
   mounted() {
-    console.log(`[View/ServerPagination] is mounted : ${this.src}`);
-
+    console.log(`[View/ServerPagination] is mounted : ${this.board.target}`);
+    console.log(`[View/ServerPagination] page: ${this.pagination.currentPage}`)
     this.getData();
   },
   methods: {
+    //  load data from API Server
     getData(params, onSuccess) {
       const $this = this;
+
+      $this.$emit('loadStart')
 
       axios
         .get($this.board.target, {
@@ -97,7 +100,6 @@ export default {
           }
         })
         .then((res) => {
-          console.log(res);
           $this.board.items = res.data.list.map((it) => new BoardVo(it));
           $this.board.rows = res.data.size;
 
@@ -106,7 +108,7 @@ export default {
             result: $this.board.items.length > 0,
           });
 
-          console.log("[View/ClientPagination] this.emit.loadOver");
+          console.log(`[View/ClientPagination] this.emit.loadOver`);
 
           if(!!onSuccess && typeof onSuccess === 'function'){
             onSuccess();
@@ -120,18 +122,24 @@ export default {
           });
         });
     },
+    //  run getData on page moved
     movePage(page){
+      const $this = this;
       console.log(`movePage fired => param: ${page}`)
-      this.getData(
-        {page: page, perPage: this.pagination.perPage},
-        ()=>{ this.pagination.currentPage = page;}
+      $this.getData(
+        {page: page, perPage: $this.pagination.perPage},
+        ()=>{ $this.pagination.currentPage = page;}
       )
     }
   },
   watch:{
+    //  run getData on perPage changed
     'pagination.perPage': function(newValue, oldValue){
         console.log(`watch/pagination.perPage is changed`)
         this.movePage(1);
+    },
+    'pagination.currentPage': function(newValue, oldValue){
+      console.log(`watch/pagination.currentPage is changed : ${newValue} <- ${oldValue}`)
     }
   }
 };

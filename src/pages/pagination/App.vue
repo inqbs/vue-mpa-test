@@ -19,12 +19,11 @@
     </nav>
     <b-jumbotron fluid header="Pagination Page" lead="This is Pagination page" bg-variant="warning" text-variant="dark">
     </b-jumbotron>
-    <b-container v-show="!isLoading">
-      <router-view @loadOver="onLoadOver" />
+    <b-container>
+      <b-overlay :show="isLoading">
+        <router-view @loadStart="onLoadStart" @loadOver="onLoadOver" />
+      </b-overlay>
     </b-container>
-    <div class="loading" v-if="isLoading">
-      <b-spinner type="grow" variant="warning" label="loading..."></b-spinner>
-    </div>
   </div>
 </template>
 
@@ -39,6 +38,9 @@ export default {
     console.log('[app.vue] is mounted')
   },
   methods:{
+    onLoadStart(){
+      this.isLoading = true
+    },
     onLoadOver(result){
       console.log(`onLoadOver is fired. ${result}`)
       this.isLoading = false
@@ -49,10 +51,4 @@ export default {
 </script>
 
 <style lang="scss">
-.loading{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>

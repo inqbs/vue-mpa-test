@@ -53,7 +53,7 @@ export default {
     return {
       pagination: {
         perPage: 10,
-        currentPage: 1,
+        currentPage: this.$route.query.page ?? 1,
         options:[
           {value: 10, text: '10건'},
           {value: 30, text: '30건'},
@@ -67,7 +67,8 @@ export default {
     }
   },
   mounted(){
-    console.log(`[View/ClientPagination] is mounted : ${this.src}`)
+    console.log(`[View/ClientPagination] is mounted`)
+    console.log(`[View/ClientPagination] page: ${this.pagination.currentPage}`)
 
     const $this = this;
 

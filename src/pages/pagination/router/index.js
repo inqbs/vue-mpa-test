@@ -12,13 +12,11 @@ const routes = [
     path: '/',
     name: 'ClientPagination',
     component: ClientPagination,
-    props: true,
   },
   {
     path: '/server',
     name: 'ServerPagination',
     component: ServerPagination,
-    props: true,
   },
 ];
 

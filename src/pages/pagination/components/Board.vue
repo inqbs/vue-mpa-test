@@ -35,11 +35,6 @@ export default {
   mounted(){
     console.log('[components/Board] is mounted')
   },
-  methods:{
-    movePage(num){
-      console.log(`movePage fired to ${num}`)
-    },
-  }
 };
 </script>
 
