@@ -19,6 +19,7 @@
     </nav>
     <b-jumbotron fluid header="Pagination Page" lead="This is Pagination page" bg-variant="warning" text-variant="dark">
     </b-jumbotron>
+    {{isLoading}}
     <b-container>
       <b-overlay :show="isLoading">
         <router-view @loadStart="onLoadStart" @loadOver="onLoadOver" />

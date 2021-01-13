@@ -71,6 +71,7 @@ export default {
     console.log(`[View/ClientPagination] page: ${this.pagination.currentPage}`)
 
     const $this = this;
+    $this.$emit('loadStart')
 
     axios.get('http://localhost:5000/test/data', { 
       headers:{
