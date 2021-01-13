@@ -1,5 +1,16 @@
 <template>
   <div>
+    {{ /**
+        [Client Pagination]
+        @items: table에 보여질 아이템 목록
+        @perPage: 한 페이지당 보여질 아이템 갯수
+        @currentPage: 현재 페이지
+        @total-rows: 전체 아이템 목록
+
+        1. 모든 데이터를 mounted시에 load
+        2. table에 @items, @perPage, @currentPage 정보를 setting
+        3. pagination에 @total-rows, @perPage 정보를 setting, @currentPage는 v-model로 설정
+    */ }}
     <b-row>
       <Board :items.sync="board.items"
             :pagination.sync="pagination"
