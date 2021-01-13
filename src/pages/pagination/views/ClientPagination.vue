@@ -1,7 +1,29 @@
 <template>
   <div>
-    <Board :items.sync="board.items"
-           :rows.sync="board.rows" />
+    <b-row>
+      <Board :items.sync="board.items"
+            :pagination.sync="pagination"
+            :rows.sync="board.rows" />
+    </b-row>
+    <b-row>
+      <b-col md="2">
+        <b-form-select v-model="pagination.perPage" :options="pagination.options">
+          <template #first>
+            <b-form-select-option :value="0" disabled>-- 행선택 --</b-form-select-option>
+          </template>
+        </b-form-select>
+      </b-col>
+      <b-col md="8">
+        <b-pagination
+          v-model="pagination.currentPage"
+          :total-rows="board.rows"
+          :per-page="pagination.perPage"
+          aria-controls="board-table"
+          align="center"
+          pills
+        ></b-pagination>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -18,6 +40,15 @@ export default {
   },
   data(){
     return {
+      pagination: {
+        perPage: 10,
+        currentPage: 1,
+        options:[
+          {value: 10, text: '10건'},
+          {value: 30, text: '30건'},
+          {value: 50, text: '50건'},
+        ]
+      },
       board:{
         items: [],
         rows: 0
