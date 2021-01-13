@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="navbar-brand">BOARD</div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
@@ -22,6 +22,12 @@
     <b-container>
       <b-overlay :show="isLoading">
         <router-view @loadStart="onLoadStart" @loadOver="onLoadOver" />
+        <template #overlay>
+          <div class="text-center">
+            <b-icon icon="stopwatch" font-scale="3" animation="cylon"></b-icon>
+            <p id="cancel-label">Please wait...</p>
+          </div>
+        </template>
       </b-overlay>
     </b-container>
   </div>
