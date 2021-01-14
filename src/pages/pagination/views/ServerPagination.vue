@@ -70,7 +70,7 @@ export default {
         ],
       },
       board: {
-        target: "http://localhost:5000/test/board/list",
+        target: "http://localhost:3000/list",
         items: [],
         rows: 0,
       },
