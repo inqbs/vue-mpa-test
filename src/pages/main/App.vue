@@ -11,7 +11,7 @@
     </b-jumbotron>
     <b-container>
       <b-row>
-        <b-col col="12">
+        <b-col cols="12">
           <validation-observer ref="observer" v-slot="{ handleSubmit }">
             <b-form @submit.stop.prevent="handleSubmit(submit)">
               <validation-provider

@@ -27,7 +27,9 @@
           @loadStart="onLoadStart" 
           @loadOver="onLoadOver" 
           @alert="onAlert"
+          @updateRequred="onUpdateRequred" 
           :isUpdatable="isUpdatable" />
+
         <template #overlay>
           <div class="text-center">
             <b-icon icon="stopwatch" font-scale="3" animation="cylon"></b-icon>
@@ -42,7 +44,7 @@
         <font-awesome-icon icon="pen" />
       </b-button>
 
-      <Form @created="onCreated" @alert="onAlert" />
+      <Form @updateRequred="onUpdateRequred" @alert="onAlert" />
     </div>
 
   </div>
@@ -75,13 +77,14 @@ export default {
       this.isLoading = false
       this.isUpdatable = false
     },
-    onCreated(){
-      console.log(`onCreated is fired.`)
+    onUpdateRequred(){
+      console.log(`UpdateRequred is fired.`)
       this.isUpdatable = true
     },
     onAlert(param){
       console.log(`onAlert is fired`)
       console.log(param)
+
       this.$bvToast.toast(param.msg, {
         title: param.title,
         autoHideDelay: 3000,

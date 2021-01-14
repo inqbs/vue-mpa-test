@@ -16,6 +16,7 @@
         :items.sync="board.items"
         :pagination.sync="pagination"
         :rows.sync="board.rows"
+        v-on="$listeners"
       />
     </b-row>
     <b-row>

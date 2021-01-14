@@ -22,6 +22,7 @@
         :pagination.sync="pagination"
         :isServerSidePaging="true"
         :rows.sync="board.rows"
+        v-on="$listeners"
       />
     </b-row>
     <b-row>
@@ -131,7 +132,7 @@ export default {
         {page: page, perPage: $this.pagination.perPage},
         ()=>{ $this.pagination.currentPage = page;}
       )
-    }
+    },
   },
   watch:{
     //  run getData on perPage changed

@@ -160,7 +160,7 @@ export default {
           //  TODO: alert
           if (!!res.data.result) {
             //  TODO: refresh board
-            $this.$emit("created");
+            $this.$emit("updateRequred");
 
             $this.form = {
               title: "",
