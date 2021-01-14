@@ -29,6 +29,14 @@
         </transition>
       </template>
     </b-table>
+
+    <div 
+      v-if="!items || items.length == 0"
+      class="alert text-center mt-4 mb-4 d-flex align-items-center justify-content-center alert-light"
+    >
+      <b-icon-view-list class="mr-2" /> 
+      <span>글 없음</span> 
+    </div>
   </b-col>
 </template>
 

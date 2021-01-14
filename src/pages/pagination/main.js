@@ -13,10 +13,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
-import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
-import * as rules from "vee-validate/dist/rules";
-import ko from 'vee-validate/dist/locale/ko.json'
-
 //  font-awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -25,6 +21,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// validation
+import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
+import * as rules from "vee-validate/dist/rules";
+import ko from 'vee-validate/dist/locale/ko.json'
 
 // Install VeeValidate rules and localization
 Object.keys(rules).forEach(rule => {
