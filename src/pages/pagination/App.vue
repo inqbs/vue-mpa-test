@@ -23,7 +23,11 @@
 
     <b-container>
       <b-overlay :show="isLoading">
-        <router-view @loadStart="onLoadStart" @loadOver="onLoadOver" :isUpdatable="isUpdatable" />
+        <router-view 
+          @loadStart="onLoadStart" 
+          @loadOver="onLoadOver" 
+          @alert="onAlert"
+          :isUpdatable="isUpdatable" />
         <template #overlay>
           <div class="text-center">
             <b-icon icon="stopwatch" font-scale="3" animation="cylon"></b-icon>
@@ -38,7 +42,7 @@
         <font-awesome-icon icon="pen" />
       </b-button>
 
-      <Form @created="onCreated"/>
+      <Form @created="onCreated" @alert="onAlert" />
     </div>
 
   </div>
@@ -74,6 +78,16 @@ export default {
     onCreated(){
       console.log(`onCreated is fired.`)
       this.isUpdatable = true
+    },
+    onAlert(param){
+      console.log(`onAlert is fired`)
+      console.log(param)
+      this.$bvToast.toast(param.msg, {
+        title: param.title,
+        autoHideDelay: 3000,
+        solid: true,
+        variant: param.variant
+      })
     }
   }
 };

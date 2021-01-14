@@ -158,7 +158,6 @@ export default {
         })
         .then((res) => {
           //  TODO: alert
-
           if (!!res.data.result) {
             //  TODO: refresh board
             $this.$emit("created");
@@ -172,11 +171,28 @@ export default {
 
             //  close modal
             $this.$bvModal.hide("modal-form");
+
+            $this.$emit("alert", {
+              title: "알림",
+              msg: "등록이 성공했습니다.",
+              variant: "success",
+            });
+          } else {
+            $this.$emit("alert", {
+              title: "오류",
+              msg: "등록이 실패했습니다.",
+              variant: "danger",
+            });
           }
         })
         .catch((err) => {
           console.error(err);
           //  TODO: alert
+          $this.$emit("alert", {
+            title: "오류",
+            msg: "등록이 실패했습니다.",
+            variant: "danger",
+          });
         });
     },
     getValidationState({ dirty, validated, valid = null }) {
