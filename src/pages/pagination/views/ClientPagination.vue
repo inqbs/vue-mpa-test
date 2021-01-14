@@ -12,15 +12,22 @@
         3. pagination에 @total-rows, @perPage 정보를 setting, @currentPage는 v-model로 설정
     */ }}
     <b-row>
-      <Board :items.sync="board.items"
-            :pagination.sync="pagination"
-            :rows.sync="board.rows" />
+      <Board
+        :items.sync="board.items"
+        :pagination.sync="pagination"
+        :rows.sync="board.rows"
+      />
     </b-row>
     <b-row>
       <b-col md="2">
-        <b-form-select v-model="pagination.perPage" :options="pagination.options">
+        <b-form-select
+          v-model="pagination.perPage"
+          :options="pagination.options"
+        >
           <template #first>
-            <b-form-select-option :value="0" disabled>-- 행선택 --</b-form-select-option>
+            <b-form-select-option :value="0" disabled
+              >-- 행선택 --</b-form-select-option
+            >
           </template>
         </b-form-select>
       </b-col>
@@ -39,9 +46,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
-import BoardVo from '@/model/BoardVo.js'
+import BoardVo from "@/model/BoardVo.js";
 import Board from "../components/Board";
 
 export default {
@@ -49,54 +56,70 @@ export default {
   components: {
     Board,
   },
-  data(){
+  props: ["isUpdatable"],
+  data() {
     return {
       pagination: {
         perPage: 10,
         currentPage: this.$route.query.page ?? 1,
-        options:[
-          {value: 10, text: '10건'},
-          {value: 30, text: '30건'},
-          {value: 50, text: '50건'},
-        ]
+        options: [
+          { value: 10, text: "10건" },
+          { value: 30, text: "30건" },
+          { value: 50, text: "50건" },
+        ],
       },
-      board:{
+      board: {
         items: [],
-        rows: 0
-      }
-    }
-  },
-  mounted(){
-    console.log(`[View/ClientPagination] is mounted`)
-    console.log(`[View/ClientPagination] page: ${this.pagination.currentPage}`)
-
-    const $this = this;
-    $this.$emit('loadStart')
-
-    axios.get('http://localhost:3000/list', { 
-      headers:{
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type' : 'application/json; charset = utf-8'
+        rows: 0,
       },
-    }).then(res=>{
-      console.log(res)
-      $this.board.items = res.data.list.map(it=>new BoardVo(it));
-      $this.board.rows = res.data.size;
+    };
+  },
+  mounted() {
+    console.log(`[View/ClientPagination] is mounted`);
+    console.log(`[View/ClientPagination] page: ${this.pagination.currentPage}`);
 
-      $this.$emit('loadOver',{
-        load: true,
-        result: $this.board.items.length > 0
-      })
-      console.log('[View/ClientPagination] this.emit.loadOver')
-    }).catch(err=>{
-      console.error(err)
-      $this.$emit('loadOver',{
-        load: false,
-        result: false
-      })
-    })
+    this.loadData();
   },
   methods: {
+    loadData() {
+      const $this = this;
+
+      $this.$emit("loadStart");
+
+      axios
+        .get("http://localhost:3000/list", {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json; charset = utf-8",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          $this.board.items = res.data.list.map((it) => new BoardVo(it));
+          $this.board.rows = res.data.size;
+
+          $this.$emit("loadOver", {
+            load: true,
+            result: $this.board.items.length > 0,
+          });
+          console.log("[View/ClientPagination] this.emit.loadOver");
+        })
+        .catch((err) => {
+          console.error(err);
+          $this.$emit("loadOver", {
+            load: false,
+            result: false,
+          });
+        });
+    },
+  },
+  watch: {
+    isUpdatable: function (newVal, oldVal) {
+      console.log(`[View/ClientPagination] isUpdatable is changed -> ${newVal}`)
+      if (!!newVal) {
+        this.loadData();
+      }
+    },
   },
 };
 </script>

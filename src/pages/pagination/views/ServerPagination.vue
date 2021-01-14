@@ -58,6 +58,7 @@ export default {
   components: {
     Board,
   },
+  props: ["isUpdatable"],
   data() {
     return {
       pagination: {
@@ -140,8 +141,14 @@ export default {
     },
     'pagination.currentPage': function(newValue, oldValue){
       console.log(`watch/pagination.currentPage is changed : ${newValue} <- ${oldValue}`)
-    }
-  }
+    },
+    isUpdatable: function (newVal, oldVal) {
+      console.log(`[watch/isUpdatable] isUpdatable is changed -> ${newVal}`)
+      if (!!newVal) {
+        this.movePage(1);
+      }
+    },
+  },
 };
 </script>
 

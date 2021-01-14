@@ -23,7 +23,7 @@
 
     <b-container>
       <b-overlay :show="isLoading">
-        <router-view @loadStart="onLoadStart" @loadOver="onLoadOver" />
+        <router-view @loadStart="onLoadStart" @loadOver="onLoadOver" :isUpdatable="isUpdatable" />
         <template #overlay>
           <div class="text-center">
             <b-icon icon="stopwatch" font-scale="3" animation="cylon"></b-icon>
@@ -38,7 +38,7 @@
         <font-awesome-icon icon="pen" />
       </b-button>
 
-      <Form />
+      <Form @created="onCreated"/>
     </div>
 
   </div>
@@ -54,6 +54,7 @@ export default {
   data(){
     return {
       isLoading: true,
+      isUpdatable: false
     }
   },
   mounted(){
@@ -65,9 +66,15 @@ export default {
     },
     onLoadOver(result){
       console.log(`onLoadOver is fired. ${result}`)
-      this.isLoading = false
       console.log(result)
+
+      this.isLoading = false
+      this.isUpdatable = false
     },
+    onCreated(){
+      console.log(`onCreated is fired.`)
+      this.isUpdatable = true
+    }
   }
 };
 </script>
