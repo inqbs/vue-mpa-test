@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <b-nav tabs id="nav">
-      <b-nav-item href="/shop">
-        shop
-      </b-nav-item>
+      <b-nav-item href="/shop">shop</b-nav-item>
       <b-nav-item href="/page">page</b-nav-item>
       <b-nav-item>test2</b-nav-item>
       <b-nav-item>test3</b-nav-item>
