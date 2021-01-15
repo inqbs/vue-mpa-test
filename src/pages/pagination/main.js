@@ -7,10 +7,11 @@ import VueMoment from 'vue-moment'
 Vue.use(VueMoment)
 
 //  vue-bootstrap (only modal / sidebar / etc..)
-import { BootstrapVue } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 //  font-awesome
 import { library } from '@fortawesome/fontawesome-svg-core'

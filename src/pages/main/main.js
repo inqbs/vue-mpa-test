@@ -3,10 +3,11 @@ import App from './App.vue';
 import store from '@/store';
 
 //  vue-bootstrap (only modal / sidebar / etc..)
-import { BootstrapVue } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
 import * as rules from "vee-validate/dist/rules";

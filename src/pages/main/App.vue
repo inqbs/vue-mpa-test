@@ -42,11 +42,21 @@
         </b-col>
       </b-row>
     </b-container>
+
+    <MainSideBar
+
+    ></MainSideBar>
+
   </div>
 </template>
 
 <script>
+import MainSideBar from '@/components/MainSideBar'
+
 export default {
+  components:{
+    MainSideBar
+  },
   data(){
     return {
       value: ''

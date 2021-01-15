@@ -51,14 +51,11 @@
 </template>
 
 <script>
-import {BIconStopwatch, BIconViewList, BIconTrash} from 'bootstrap-vue'
-
 import Form from './components/Form';
 
 export default {
   components:{
     Form,
-    BIconStopwatch, BIconViewList, BIconTrash
   },
   data(){
     return {
