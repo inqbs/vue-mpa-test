@@ -162,15 +162,15 @@ export default {
             //  TODO: refresh board
             $this.$emit("updateRequred");
 
+            //  close modal
+            $this.$bvModal.hide("modal-form");
+
             $this.form = {
               title: "",
               description: "",
               author: "",
               password: "",
             };
-
-            //  close modal
-            $this.$bvModal.hide("modal-form");
 
             $this.$emit("alert", {
               title: "알림",

@@ -1,11 +1,13 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import routerConfig from '@/config/routers';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import routerConfig from '@/config/routers'
 
-import ClientPagination from '../views/ClientPagination.vue';
-import ServerPagination from '../views/ServerPagination.vue';
+import ClientPagination from '../views/ClientPagination.vue'
+import ServerPagination from '../views/ServerPagination.vue'
 
-Vue.use(VueRouter);
+import NotFoundComponent from '@/components/NotFoundComponent.vue'
+
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -18,12 +20,12 @@ const routes = [
     name: 'ServerPagination',
     component: ServerPagination,
   },
-];
+]
 
 const router = new VueRouter({
   mode: 'abstract',
   base: '/page',
   routes,
-});
+})
 
-export default router;
+export default router

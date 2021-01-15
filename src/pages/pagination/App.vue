@@ -51,11 +51,14 @@
 </template>
 
 <script>
+import {BIconStopwatch, BIconViewList, BIconTrash} from 'bootstrap-vue'
+
 import Form from './components/Form';
 
 export default {
   components:{
-    Form
+    Form,
+    BIconStopwatch, BIconViewList, BIconTrash
   },
   data(){
     return {
@@ -65,7 +68,6 @@ export default {
   },
   mounted(){
     console.log('[app.vue] is mounted')
-    console.log(this.$router)
   },
   methods:{
     onLoadStart(){
