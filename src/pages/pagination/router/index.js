@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/client',
     name: 'ClientPagination',
     component: ClientPagination,
   },
@@ -21,7 +21,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: routerConfig.mode,
+  mode: 'abstract',
   base: '/page',
   routes,
 });

@@ -5,7 +5,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" active-class="active" to="/" exact >
+            <router-link class="nav-link" active-class="active" to="/client" exact >
               client-side
             </router-link>
           </li>
@@ -65,6 +65,7 @@ export default {
   },
   mounted(){
     console.log('[app.vue] is mounted')
+    console.log(this.$router)
   },
   methods:{
     onLoadStart(){
